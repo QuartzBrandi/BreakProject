@@ -42,3 +42,20 @@ Steam Requirements:
 create a log database?
   logs how many calls each day to the API?
   checks to make sure is less than 100,000 for the day?
+
+popup when loading -- if querying API
+
+
+controllers:
+home
+sessions
+  player_id
+
+models:
+games
+users? / players
+  player id
+  player name
+  player library
+  player private: false
+    if player private: true then remove all player library
