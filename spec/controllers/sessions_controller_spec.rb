@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
-  describe "#new" do
+  describe "#create" do
     it "creates a new session" do
-      post :new
+      post :create
       expect(session[:player_id]).to eq 1
     end
   end
