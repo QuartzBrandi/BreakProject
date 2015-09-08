@@ -5,6 +5,7 @@
   1. Routes
     - index
     - about?
+    - redirects if not a route OR generate a 404 page
   1. Steam API
     - get current player count
     - get player's library
