@@ -8,7 +8,6 @@ RSpec.describe HomeController, type: :controller do
 
     it "is successful" do
       expect(response).to be_success
-      expect(response.status).to eq 200
       expect(response).to have_http_status 200
     end
 
@@ -34,6 +33,21 @@ RSpec.describe HomeController, type: :controller do
       it "assigns 'library' to empty array if no games" do
         expect(assigns(:library)).to eq []
       end
+    end
+  end
+
+  describe "#search" do
+    before :each do
+      get :search
+    end
+
+    it "is successful" do
+      expect(response).to be_success
+      expect(response).to have_http_status 200
+    end
+
+    it "renders the search page" do
+      expect(response).to render_template :search
     end
   end
 end
