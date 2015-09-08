@@ -17,7 +17,7 @@ RSpec.describe HomeController, type: :controller do
     context "with no session" do
       it "assigns 'library' to an empty array" do
         get :index
-        expect(assigns(:library)).to eq []
+        expect(assigns(:library)).to eq nil
       end
     end
 
