@@ -49,5 +49,21 @@ RSpec.describe HomeController, type: :controller do
     it "renders the search page" do
       expect(response).to render_template :search
     end
+
+    it "assigns 'result' to nil if no search has occured" do
+      expect(assigns(:results)).to eq nil
+    end
+
+    context "successful search" do
+      it "assigns 'result' to user info" do
+        expect(assigns(:result)).to eq "SOMETHING"
+      end
+    end
+
+    context "successful search" do
+      it "assigns 'result' to empty array if no results found"
+        expect(assigns(:result)).to eq []
+      end
+    end
   end
 end
