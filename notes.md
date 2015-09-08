@@ -23,3 +23,22 @@ How Active is My Steam Library?
 REMINDERS:
 - Need to mention "Powered by Steam" if using Steam API.
   - Read all the Terms of Use for the Steam API (make sure there isn't anything else I'm missing).
+
+# MORE NOTES
+save game stats
+  update when a user visits the site
+  update every 5 - 10 minutes?
+
+save player's game libraries? -- save player's game libraries in their cookies?
+  if a session[library] exists, create a "not USERNAME?" button
+  make an occasional check that user is not private?
+    if the site was last viewed (session[last_viewed]?) over 30 minutes ago (or an hour), check to see if that user is private
+
+Steam Requirements:
+- Each page that uses the Steam Web API must contain a link to http://steampowered.com with the text "Powered by Steam". We suggest that you put this link in your footer so it is out of the way but still visible to interested users.
+- You will post a privacy policy regarding the use of nonpublic end user data (including such Steam Data), and you will treat the Steam Data consistent with that policy. You will only retrieve Steam Data about a Steam end user as requested by the end user. You will inform the end user about any Steam Data you will store, and you will store the Steam Data in a country (or countries) identified in your privacy policy.
+- You are limited to one hundred thousand (100,000) calls to the Steam Web API per day. Valve may approve higher daily call limits if you adhere to these API Terms of Use.
+
+create a log database?
+  logs how many calls each day to the API?
+  checks to make sure is less than 100,000 for the day?
