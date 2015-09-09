@@ -61,7 +61,7 @@ RSpec.describe HomeController, type: :controller do
     end
 
     context "successful search" do
-      it "assigns 'result' to empty array if no results found"
+      it "assigns 'result' to empty array if no results found" do
         expect(assigns(:result)).to eq []
       end
     end
