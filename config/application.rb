@@ -31,5 +31,13 @@ module BreakProject
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Directories that will be watched for changes,
+    # so autoreloading will occur in development.
+    # The key is the directory to be watched and
+    # the values an array of extensions to match in the directory.
+    # In this case, 'lib' is the key/directory & '.rb' is the extention.
+    # Must be used with "require_dependency" when requiring the lib file.
+    config.watchable_dirs['lib'] = [:rb]
   end
 end
