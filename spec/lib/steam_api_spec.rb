@@ -15,6 +15,30 @@ RSpec.describe SteamAPI do
     end
   end
 
+  describe "#get_steam_ID" do
+    it "takes a string (username) as an argument" do
+
+    end
+
+    it "returns a string (of numbers)" do
+
+    end
+
+    it "returns '-1' if not a valid Steam username" do
+
+    end
+  end
+
+  describe "#get_player_summary" do
+    it "takes a string (Steam ID) as an argument" do
+
+    end
+
+    it "returns stuff" do
+
+    end
+  end
+
   describe "#get_player_library" do
     it "takes a string (Steam ID) as an argument" do
 
@@ -31,20 +55,6 @@ RSpec.describe SteamAPI do
     end
 
     it "returns an empty hash if user owns no games" do
-
-    end
-  end
-
-  describe "#get_steam_ID" do
-    it "takes a string (username) as an argument" do
-
-    end
-
-    it "returns a string (of numbers)" do
-
-    end
-
-    it "returns '-1' if not a valid Steam username" do
 
     end
   end
