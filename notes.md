@@ -9,6 +9,10 @@
   - when the API fails
   - something went wrong
 - Maybe try and make a unique 404 page? That'd be cool...
+- Delete records from the database if created over 60 days ago?
+  - (Routine cleaning?)
+  - ALSO, expire cookies after 60 days?
+  - OR, check session, if player_id does not exist anymore, set session to nil.
 
 Name Brainstorm for Site:
 How Many Steam Players?
@@ -23,8 +27,8 @@ Steam Pop(ulation) in Perspective
 - Should probably have 'Steam' in the name.
 
 REMINDERS:
-- Need to mention "Powered by Steam" if using Steam API.
-  - Read all the Terms of Use for the Steam API (make sure there isn't anything else I'm missing).
+- [✓] Need to mention "Powered by Steam" if using Steam API.
+  - [✓] Read all the Terms of Use for the Steam API (make sure there isn't anything else I'm missing).
 
 # MORE NOTES
 save game stats
@@ -35,6 +39,10 @@ save player's game libraries? -- save player's game libraries in their cookies?
   if a session[library] exists, create a "not USERNAME?" button
   make an occasional check that user is not private?
     if the site was last viewed (session[last_viewed]?) over 30 minutes ago (or an hour), check to see if that user is private
+    "not USERNAME?"
+    "not looking at USERNAME?"
+    "find a new player"
+    "find another player <small>currently looking at USERNAME</small>"
 
 Steam Requirements:
 - Each page that uses the Steam Web API must contain a link to http://steampowered.com with the text "Powered by Steam". We suggest that you put this link in your footer so it is out of the way but still visible to interested users.
@@ -49,13 +57,13 @@ popup when loading -- if querying API
 
 
 controllers:
-home
-sessions
+[✓] home
+[✓] sessions
   player_id
 
 models:
-games
-users? / players
+[✓] games
+[✓] users? / players
   player id
   player name
   player library
