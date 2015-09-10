@@ -13,6 +13,7 @@
   - (Routine cleaning?)
   - ALSO, expire cookies after 60 days?
   - OR, check session, if player_id does not exist anymore, set session to nil.
+- Save the Steam images locally when in a library...
 
 Name Brainstorm for Site:
 How Many Steam Players?
