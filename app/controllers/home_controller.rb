@@ -9,6 +9,8 @@ class HomeController < ApplicationController
   end
 
   def search
-    @result = SteamAPI.get_steam_ID(params[:id])
+    steamid = SteamAPI.get_steam_ID(params[:id])
+    # if steamid returns false / -1 do something
+    @player = SteamAPI.get_player_summary(steamid)
   end
 end
