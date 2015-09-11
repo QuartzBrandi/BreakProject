@@ -3,10 +3,10 @@
 
 <% if @library %>
   <p>not <%=@player.name%>?</p>
-  <%= @library.each do |game| %>
-  <%= game.name %>
+  <% @library.each do |game| %>
+  <%= game[:name] %>
   <br>
-  <%= game.population %>
+  <%= game[:population] %>
   <br>
   <% end %>
 <% else %>

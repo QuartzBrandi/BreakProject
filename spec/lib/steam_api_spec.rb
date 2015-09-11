@@ -15,7 +15,7 @@ RSpec.describe SteamAPI do
     end
   end
 
-  describe "#get_steam_ID" do
+  describe "#get_steamid" do
     it "takes a string (username) as an argument" do
 
     end

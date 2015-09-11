@@ -1,4 +1,21 @@
 <h1>SEARCH</h1>
 
+<% if @player %>
+Looking for
 <%= @player[:personaname] %>
-<%= image_tag @player[:avatar] %>
+<%= image_tag @player[:avatar_full] %>
+?* Remember to insert your account's URL or steamid
+<%= button_to "yes", sessions_path, method: 'post', params: {player_id: @player} %>
+
+<%= form_for @player, url: sessions_path, html: { method: 'post' } do |f| %>
+<%= f.hidden_field :steamid %>
+<%= f.hidden_field :name %>
+<%= f.hidden_field :avatar %>
+<%= f.submit "yes" %>
+<% end %>
+<% else %>
+No account could be found.
+Be sure to enter either your account's URL.
+http://steamcommunity.com/id/&#60;ACCOUNT&#62;
+Or your steamid (a 64 bit id).
+<% end %>

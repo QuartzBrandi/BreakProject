@@ -28,7 +28,9 @@ ActiveRecord::Schema.define(version: 20150910192250) do
   add_index "games_players", ["player_id", "game_id"], name: "index_games_players_on_player_id_and_game_id"
 
   create_table "players", force: :cascade do |t|
+    t.string   "steamid"
     t.string   "name"
+    t.string   "avatar"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
