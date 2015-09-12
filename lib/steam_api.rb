@@ -10,7 +10,7 @@ class SteamAPI
     response = HTTParty.get(url)
     game_population = response.parsed_response["response"]["player_count"]
 
-    return game_population || false
+    return game_population || nil
   end
 
   # GET http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=XXXXXXXXXXXXXXXXXXXXXXX&vanityurl=userVanityUrlName
@@ -22,7 +22,7 @@ class SteamAPI
     response = HTTParty.get(url)
     steamid = response.parsed_response["response"]["steamid"]
 
-    return steamid || false
+    return steamid || nil
   end
 
   # GET http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=XXXXXXXXXXXXXXXXXXXXXXX&steamids=userSteamNumberID
