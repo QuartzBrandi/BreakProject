@@ -33,3 +33,7 @@ table {
   margin: auto;
   text-align: left;
 }
+
+.population-col {
+  text-align: right;
+}
