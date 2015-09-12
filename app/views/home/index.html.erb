@@ -1,19 +1,27 @@
 <h1>MY STEAM POP</h1>
 
-
-<% if @library %>
-  <p>not <%=@player.name%>?</p>
-  <% @library.each do |game| %>
-  <%= game[:name] %>
-  <br>
-  <%= game[:population] %>
-  <br>
+<div>
+  <% if @library %>
+    <p>not <%=@player.name%>?</p>
+    <p>look at a different account</p>
+    <table>
+      <tr>
+        <th>Game</th>
+        <th>Population</th>
+      </tr>
+    <% @library.each do |game| %>
+      <tr>
+        <td><%= game[:name] %></td>
+        <td><%= game[:population] %></td>
+      </tr>
+    <% end %>
+    </table>
+  <% else %>
+    <%= form_tag search_path, method: 'get' do %>
+      <%= label_tag :id, "Search for:" %>
+      <%= text_field_tag :id %>
+      <%= submit_tag "Search" %>
+    <% end %>
+    <p>WELCOME TO THIS WEBPAGE.</p>
   <% end %>
-<% else %>
-  <%= form_tag search_path, method: 'get' do %>
-    <%= label_tag :id, "Search for:" %>
-    <%= text_field_tag :id %>
-    <%= submit_tag "search" %>
-  <% end %>
-  <p>WELCOME TO THIS WEBPAGE.</p>
-<% end %>
+</div>

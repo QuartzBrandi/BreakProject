@@ -1,21 +1,24 @@
 <h1>SEARCH</h1>
 
 <% if @player %>
-Looking for
-<%= @player[:personaname] %>
-<%= image_tag @player[:avatar_full] %>
-?* Remember to insert your account's URL or steamid
-<%= button_to "yes", sessions_path, method: 'post', params: {player_id: @player} %>
+  Looking for
+  <%= @player.name %>
+  <%= image_tag @player.avatar %>
+  ?* Remember to insert your account's URL or steamid
 
-<%= form_for @player, url: sessions_path, html: { method: 'post' } do |f| %>
-<%= f.hidden_field :steamid %>
-<%= f.hidden_field :name %>
-<%= f.hidden_field :avatar %>
-<%= f.submit "yes" %>
-<% end %>
+  <%= form_for @player, url: sessions_path, html: { method: 'post' } do |f| %>
+    <%= f.hidden_field :steamid %>
+    <%= f.hidden_field :name %>
+    <%= f.hidden_field :avatar %>
+    <%= f.submit "Yes" %>
+  <% end %>
+
+  <p>Not your account?</p>
+  <p>Make sure your steamid is correct or you're using the
+  <p>Remember to search for the account of your custom url <span class="steam_id_url">http://steamcommunity.com/id/&#60;ACCOUNT&#62;</span></p>
 <% else %>
-No account could be found.
-Be sure to enter either your account's URL.
-http://steamcommunity.com/id/&#60;ACCOUNT&#62;
-Or your steamid (a 64 bit id).
+  No account could be found.
+  Be sure to enter either your account's URL.
+  http://steamcommunity.com/id/&#60;ACCOUNT&#62;
+  Or your steamid (a 64 bit id).
 <% end %>

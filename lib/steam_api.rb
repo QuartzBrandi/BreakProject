@@ -46,19 +46,7 @@ class SteamAPI
   end
 
   # GET http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=XXXXXXXXXXXXXXXXXXXXXXX&steamid=userSteamNumberID&include_appinfo=1&include_played_free_games=1
-  # 1 is for true, not sure what number is used for false (most of the optional filters are false by default)
-  # { "response":
-  #   { "game_count": X,
-  #     "games": [
-  #       { "appid": XXXXX,
-  #         "name": X,
-  #         "playtime_forever": XX,
-  #         "img_icon_url": X,
-  #         "img_logo_url": X,
-  #         "has_community_visible_stats": X }
-  #     ]
-  #   }
-  # }
+  # For the optional fields, 1 is for true.
   def self.get_player_library(steamid)
     url = URI + "IPlayerService/GetOwnedGames/v0001/?key=" +
           ENV["STEAM_WEB_API_KEY"] + "&steamid=" + steamid +
@@ -71,8 +59,8 @@ class SteamAPI
       games_reformatted << {
         appid: game["appid"],
         name: game["name"],
-        playtime_total: game["playtime_forever"],
-        img_logo_url: game["img_logo_url"]
+        img_logo_url: game["img_logo_url"],
+        playtime_total: game["playtime_forever"]
       }
     end
 

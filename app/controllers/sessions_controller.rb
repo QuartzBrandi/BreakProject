@@ -5,7 +5,9 @@ class SessionsController < ApplicationController
 
     games = SteamAPI.get_player_library(player.steamid)
     games.each do |game|
-      player.games << Game.create(game)
+      record = Playtime.create(playtime_total: game[:playtime_total])
+      record.game = Game.create(game)
+      record.player = player
     end
 
     # Updating player's library once a day.
