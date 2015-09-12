@@ -23,6 +23,7 @@ Steam Library Player Count
 How Active is My Steam Library?
 My Steam Pop
 Steam Pop(ulation) in Perspective
+Steam Tally
 
 ... All of these are pretty lame.
 - Should probably have 'Steam' in the name.
