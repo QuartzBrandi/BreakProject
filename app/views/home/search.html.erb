@@ -3,7 +3,7 @@
 <% if @player %>
   Looking for
   <%= @player.name %>
-  <%= image_tag @player.avatar %>
+  <%= image_tag full_icon(@player.avatar) %>
   ?* Remember to insert your account's URL or steamid
 
   <%= form_for @player, url: sessions_path, html: { method: 'post' } do |f| %>

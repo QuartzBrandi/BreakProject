@@ -31,18 +31,23 @@ class SteamAPI
           ENV["STEAM_WEB_API_KEY"] + "&steamids=" + steamid
     response = HTTParty.get(url)
     player = response.parsed_response["response"]["players"].first
-    steamid = player["steamid"]
-    personaname = player["personaname"]
-    avatar_medium = player["avatarmedium"]
-    avatar_full = player["avatarfull"]
 
-    player_reformatted = {
-      steamid: steamid,
-      name: personaname,
-      avatar: avatar_full
-    }
+    if player
+      steamid = player["steamid"]
+      personaname = player["personaname"]
+      avatar_medium = player["avatarmedium"]
+      avatar_full = player["avatarfull"]
 
-    return player_reformatted
+      player_reformatted = {
+        steamid: steamid,
+        name: personaname,
+        avatar: avatar_medium
+      }
+
+      return player_reformatted
+    else
+      return nil
+    end
   end
 
   # GET http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=XXXXXXXXXXXXXXXXXXXXXXX&steamid=userSteamNumberID&include_appinfo=1&include_played_free_games=1

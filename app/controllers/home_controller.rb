@@ -13,11 +13,18 @@ class HomeController < ApplicationController
   end
 
   def search
-    steamid = SteamAPI.get_steamid(params[:id])
-    # if steamid returns false do something
-    if steamid
-      player = SteamAPI.get_player_summary(steamid)
-      @player = Player.new(player)
+    if /^\d+$/.match(params[:id]) # possibly entered a steamid
+      player = SteamAPI.get_player_summary(params[:id])
+      @player = Player.new(player) unless player.nil?
+    end
+
+    unless @player
+      steamid = SteamAPI.get_steamid(params[:id])
+      # if steamid returns nil do something
+      if steamid
+        player = SteamAPI.get_player_summary(steamid)
+        @player = Player.new(player)
+      end
     end
   end
 
@@ -55,9 +62,6 @@ class HomeController < ApplicationController
   end
 
   def create_playtime(player, game_results)
-    playtime = Playtime.create(playtime_total: game_results[:playtime_total])
-    playtime.game = Game.create(game_results.without(:playtime_total))
-    playtime.player = player
   end
 
   def update_playtime

@@ -9,4 +9,8 @@ module HomeHelper
 
     return url
   end
+
+  def full_icon(avatar_url)
+    avatar_url.gsub(/medium/, "full")
+  end
 end
