@@ -11,24 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150910192250) do
+ActiveRecord::Schema.define(version: 20150912075411) do
 
   create_table "games", force: :cascade do |t|
     t.string   "appid"
     t.string   "name"
-    # t.string   "playtime_total"
     t.string   "img_logo_url"
     t.integer  "population"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
-
-  create_table "games_players", id: false, force: :cascade do |t|
-    t.integer "game_id",   null: false
-    t.integer "player_id", null: false
-  end
-
-  add_index "games_players", ["player_id", "game_id"], name: "index_games_players_on_player_id_and_game_id"
 
   create_table "players", force: :cascade do |t|
     t.string   "steamid"
@@ -37,5 +29,16 @@ ActiveRecord::Schema.define(version: 20150910192250) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "playtimes", force: :cascade do |t|
+    t.integer  "player_id"
+    t.integer  "game_id"
+    t.string   "playtime_total"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "playtimes", ["game_id"], name: "index_playtimes_on_game_id"
+  add_index "playtimes", ["player_id"], name: "index_playtimes_on_player_id"
 
 end

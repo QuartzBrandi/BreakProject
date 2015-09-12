@@ -1,5 +1,6 @@
 class Game < ActiveRecord::Base
-  has_and_belongs_to_many :players
+  has_many :playtimes
+  has_many :players, through: :playtimes
 
   validates_uniqueness_of :appid
 end

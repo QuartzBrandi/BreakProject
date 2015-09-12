@@ -3,7 +3,6 @@ class CreateGames < ActiveRecord::Migration
     create_table :games do |t|
       t.string :appid
       t.string :name
-      # t.string :playtime_total
       t.string :img_logo_url
       t.integer :population
 
