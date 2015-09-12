@@ -4,13 +4,16 @@
   <% if @library %>
     <p>not <%=@player.name%>?</p>
     <p>look at a different account</p>
+    <%= button_to "not?", session_path(session[:player_id]), method: 'delete' %>
     <table>
       <tr>
+        <th>Image</th>
         <th>Game</th>
         <th>Population</th>
       </tr>
     <% @library.each do |game| %>
       <tr>
+        <td><%= image_tag url(game) %></td>
         <td><%= game[:name] %></td>
         <td><%= game[:population] %></td>
       </tr>

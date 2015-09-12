@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   private
 
   def create_game(game_info)
-    game = Game.create(game_info.without(:playtime_total))
+    game = Game.create(game_info.except(:playtime_total))
     update_population(game)
     return game
   end

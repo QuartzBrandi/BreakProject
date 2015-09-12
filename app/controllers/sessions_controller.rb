@@ -6,9 +6,10 @@ class SessionsController < ApplicationController
     games = SteamAPI.get_player_library(player.steamid)
     games.each do |game_info|
       playtime = Playtime.create(playtime_total: game_info[:playtime_total])
-      game = Game.find_appid(game_info[:appid]) || create_game(game_info)
+      game = Game.find_by(appid: game_info[:appid]) || create_game(game_info)
       playtime.game = game
       playtime.player = player
+      player.games << game
     end
 
     redirect_to root_path
