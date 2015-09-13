@@ -2,9 +2,9 @@
 
 <div>
   <% if @library %>
-    <p>not <%=@player.name%>?</p>
-    <p>look at a different account</p>
-    <%= button_to "not?", session_path(session[:player_id]), method: 'delete' %>
+    <%= image_tag @player.avatar %><br>
+    <%= @player.name %>'s Library<br>
+    <%= link_to "look at a different account?", session_path(session[:player_id]), method: 'delete' %>
     <table>
       <thead>
         <tr>
@@ -22,11 +22,15 @@
       <% end %>
     </table>
   <% else %>
+    <p>Find your library and see how many people are currently in each game.</p>
+
     <%= form_tag search_path, method: 'get' do %>
-      <%= label_tag :id, "Search for:" %>
+      <%= label_tag :steam_url, "http://steamcommunity.com/" %>
+      <%= select_tag :type, options_for_select([["id/", "vanity_url"], ["profiles/", "steamid"]]) %>
       <%= text_field_tag :id %>
       <%= submit_tag "Search" %>
     <% end %>
-    <p>WELCOME TO THIS WEBPAGE.</p>
+
+    <p class="helper-text">Search using your custom Steam URL.</p>
   <% end %>
 </div>

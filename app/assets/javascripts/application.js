@@ -14,3 +14,20 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function() {
+
+  $('select').change(function() {
+    if ($(this).val() == "vanity_url") {
+      helper = $('.helper-text')
+      helper.text("Search using your custom Steam URL.");
+      helper.addClass("fade_in").on("animationend", function() { $('.helper-text').removeClass("fade_in") });
+    }
+    if ($(this).val() == "steamid") {
+      helper = $('.helper-text').text("This is your 64-bit Steam ID.");
+      helper.text("Search using your Steam ID. Example: 7656119XXXXXXXXXX.");
+      helper.addClass("fade_in").on("animationend", function() { $('.helper-text').removeClass("fade_in") });
+    }
+  });
+
+});

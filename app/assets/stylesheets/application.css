@@ -17,6 +17,8 @@
 body {
   background-color: #171a21;
   color: #FFFFFF;
+  font-family: 'Special Elite', cursive;
+
 }
 
 h1 {
@@ -41,4 +43,14 @@ table {
 .population-col {
   text-align: right;
   font-family: 'Special Elite', cursive;
+}
+
+.fade_in {
+  opacity: 0;
+  animation: from_darkness 0.2s;
+}
+
+@keyframes from_darkness {
+  from { opacity: 0 }
+  to { opacity: 1 }
 }
