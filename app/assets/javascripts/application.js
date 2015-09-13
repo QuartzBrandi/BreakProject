@@ -22,11 +22,21 @@ $(document).ready(function() {
       helper = $('.helper-text')
       helper.text("Search using your custom Steam URL.");
       helper.addClass("fade_in").on("animationend", function() { $('.helper-text').removeClass("fade_in") });
+      if ($('.search-hint') != []) {
+        hint = $('.search-hint')
+        hint.text("Be sure you are entering your custom URL and not your username or display name.");
+        hint.addClass("fade_in").on("animationend", function() { $('.helper-text').removeClass("fade_in") });
+        // for some reason this inside animation is not working...
+      }
     }
     if ($(this).val() == "steamid") {
-      helper = $('.helper-text').text("This is your 64-bit Steam ID.");
+      helper = $('.helper-text')
       helper.text("Search using your Steam ID. Example: 7656119XXXXXXXXXX.");
       helper.addClass("fade_in").on("animationend", function() { $('.helper-text').removeClass("fade_in") });
+      if ($('.search-hint') != []) {
+        hint = $('.search-hint')
+        hint.text(" ");
+      }
     }
   });
 

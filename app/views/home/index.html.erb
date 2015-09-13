@@ -1,10 +1,8 @@
-<h1>STEAM TALLY</h1>
-
 <div>
   <% if @library %>
-    <%= image_tag @player.avatar %><br>
-    <%= @player.name %>'s Library<br>
-    <%= link_to "look at a different account?", session_path(session[:player_id]), method: 'delete' %>
+    <h2><%= @player.name %>'s Library</h2>
+    <%= image_tag @player.avatar %>
+    <div><%= link_to "look at a different account?", session_path(session[:player_id]), method: 'delete' %></div>
     <table>
       <thead>
         <tr>
@@ -24,13 +22,6 @@
   <% else %>
     <p>Find your library and see how many people are currently in each game.</p>
 
-    <%= form_tag search_path, method: 'get' do %>
-      <%= label_tag :steam_url, "http://steamcommunity.com/" %>
-      <%= select_tag :type, options_for_select([["id/", "vanity_url"], ["profiles/", "steamid"]]) %>
-      <%= text_field_tag :id %>
-      <%= submit_tag "Search" %>
-    <% end %>
-
-    <p class="helper-text">Search using your custom Steam URL.</p>
+    <%= render partial: "searchbox" %>
   <% end %>
 </div>

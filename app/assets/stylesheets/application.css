@@ -46,7 +46,6 @@ table {
 }
 
 .fade_in {
-  opacity: 0;
   animation: from_darkness 0.2s;
 }
 

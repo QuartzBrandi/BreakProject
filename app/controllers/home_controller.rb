@@ -13,18 +13,18 @@ class HomeController < ApplicationController
   end
 
   def search
-    if /^\d+$/.match(params[:id]) # possibly entered a steamid
-      player = SteamAPI.get_player_summary(params[:id])
-      @player = Player.new(player) unless player.nil?
-    end
-
-    unless @player
+    if params[:type] == "vanity_url"
       steamid = SteamAPI.get_steamid(params[:id])
       # if steamid returns nil do something
       if steamid
         player = SteamAPI.get_player_summary(steamid)
         @player = Player.new(player)
       end
+    end
+
+    if params[:type] == "steamid"
+      player = SteamAPI.get_player_summary(params[:id])
+      @player = Player.new(player) unless player.nil?
     end
   end
 
