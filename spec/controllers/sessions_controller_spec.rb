@@ -25,7 +25,7 @@ RSpec.describe SessionsController, type: :controller do
       end
 
       it "creates a new session" do
-        expect(session[:player_id]).to eq Player.first
+        expect(session[:player_id]).to eq Player.first.id
       end
 
       it "redirects to the home page" do

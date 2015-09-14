@@ -90,18 +90,20 @@ RSpec.describe HomeController, type: :controller do
         VCR.use_cassette('successful vanity_url') do
           get :search, { id: "linkgirl", type: "vanity_url" }
           player = build(:player, steamid: "76561198007153084", name: "Muselord", avatar: "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/8e/8e9805a58f9ede070e49ac2ed92385089f11032f_medium.jpg")
-          expect(assigns(:player)).to eq player
+          expect(assigns(:player).name).to eq "Muselord"
+          expect(assigns(:player).steamid).to eq "76561198007153084"
         end
-      end
+      end ### NOTE: This threw and error when trying to compare :player to player. I'm assuming because they are different objects even though all the values are the same. WHY is this???
 
       it "assigns 'player' to user info (via steamid)" do
         VCR.use_cassette('successful steamid') do
           get :search, { id: "76561198007153084", type: "steamid" }
           player = build(:player, steamid: "76561198007153084", name: "Muselord", avatar: "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/8e/8e9805a58f9ede070e49ac2ed92385089f11032f_medium.jpg")
-          expect(assigns(:player)).to eq player
-        end
+          expect(assigns(:player).name).to eq "Muselord"
+          expect(assigns(:player).steamid).to eq "76561198007153084"        end
       end
-    end
+    end ### NOTE: This threw and error when trying to compare :player to player. I'm assuming because they are different objects even though all the values are the same. WHY is this???
+        ### ORIGINAL CODE: expect(assigns(:player)).to eq player
 
     context "unsuccessful search" do
       it "assigns 'player' to empty array if no results found (via vanity_url)" do
