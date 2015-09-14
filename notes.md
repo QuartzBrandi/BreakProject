@@ -57,6 +57,13 @@ create a log database?
 
 popup when loading -- if querying API
 
+Steam limits how many times their servers/API/service can be called in one day.
+Sadly we have reached that limit and will not be able to call the service until tomorrow.
+
+try-catch 400 for bad response?
+
+open id -- for people who don't know they're id #
+
 
 controllers:
 [✓] home
