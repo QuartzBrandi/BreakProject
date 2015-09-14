@@ -5,26 +5,34 @@ require_dependency "#{Rails.root}/lib/steam_api"
 class HomeController < ApplicationController
   def index
     if session[:player_id]
-      @player = Player.find(session[:player_id])
-      update_player_library
-      update_population_for_entire_library
-      @library = @player.games
+      begin
+        @player = Player.find(session[:player_id])
+        update_player_library
+        update_population_for_entire_library
+        @library = @player.games
+      rescue ActiveRecord::RecordNotFound
+        flash.now[:error] = "An error has occurred, please search for another user."
+        reset_session
+      end ### NOTE: STILL NEED TO TEST!!! (NO INTERNET)
     end
   end
 
   def search
     if params[:type] == "vanity_url"
       steamid = SteamAPI.get_steamid(params[:id])
-      # if steamid returns nil do something
       if steamid
         player = SteamAPI.get_player_summary(steamid)
         @player = Player.new(player)
       end
+      ### TODO: Possibly throw a flash error instead of hard-coding "no results."
     end
 
     if params[:type] == "steamid"
       player = SteamAPI.get_player_summary(params[:id])
-      @player = Player.new(player) unless player.nil?
+      if player
+        @player = Player.new(player)
+      end
+      ### TODO: Possibly throw a flash error instead of hard-coding "no results."
     end
   end
 
@@ -38,11 +46,11 @@ class HomeController < ApplicationController
       games = SteamAPI.get_player_library(@player.steamid) # query Steam API
       games.each do |game_info|
         game = Game.find_by(appid: game_info[:appid]) # game = nil if not in database
-        if game
+        if game # in database
           # update the playtime
           playtime = Playtime.find_by(player_id: @player.id, game_id: game.id)
           playtime.update(playtime_total: game_info[:playtime_total])
-        else
+        else # not in database
           # add game to database & player's library
           @player.games << create_game(game_info)
         end
@@ -59,11 +67,5 @@ class HomeController < ApplicationController
         update_population(game)
       end
     end
-  end
-
-  def create_playtime(player, game_results)
-  end
-
-  def update_playtime
   end
 end
