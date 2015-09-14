@@ -23,16 +23,18 @@ class HomeController < ApplicationController
       if steamid
         player = SteamAPI.get_player_summary(steamid)
         @player = Player.new(player)
+      else
+        @player = []
       end
-      ### TODO: Possibly throw a flash error instead of hard-coding "no results."
     end
 
     if params[:type] == "steamid"
       player = SteamAPI.get_player_summary(params[:id])
       if player
         @player = Player.new(player)
+      else
+        @player = []
       end
-      ### TODO: Possibly throw a flash error instead of hard-coding "no results."
     end
   end
 

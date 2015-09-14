@@ -1,19 +1,24 @@
 <% if @player %>
-  <p>Looking for <%= @player.name %>?</p>
-  <%= image_tag full_icon(@player.avatar) %>
+  <% if @player.any? %>
+    <p>Looking for <%= @player.name %>?</p>
+    <%= image_tag full_icon(@player.avatar) %>
 
-  <%= form_for @player, url: sessions_path, html: { method: 'post' } do |f| %>
-    <%= f.hidden_field :steamid %>
-    <%= f.hidden_field :name %>
-    <%= f.hidden_field :avatar %>
-    <%= f.submit "Yes!" %>
+    <%= form_for @player, url: sessions_path, html: { method: 'post' } do |f| %>
+      <%= f.hidden_field :steamid %>
+      <%= f.hidden_field :name %>
+      <%= f.hidden_field :avatar %>
+      <%= f.submit "Yes!" %>
+    <% end %>
+
+    <p>Not your account?</p>
+    <%= render partial: "searchbox" %>
+    <p>Make sure your Steam ID is correct or you're using the correct custom URL.</p>
+  <% else %>
+    No account could be found.
+    <%= render partial: "searchbox" %>
+    <p class="search-hint">Be sure you are entering your custom URL and not your username or display name.</p>
   <% end %>
-
-  <p>Not your account?</p>
-  <%= render partial: "searchbox" %>
-  <p>Make sure your Steam ID is correct or you're using the correct custom URL.</p>
 <% else %>
-  No account could be found.
   <%= render partial: "searchbox" %>
   <p class="search-hint">Be sure you are entering your custom URL and not your username or display name.</p>
 <% end %>
